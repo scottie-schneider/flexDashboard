@@ -19,6 +19,7 @@ $white: #FFFFFF;
 */
 html {
     box-sizing: border-box;
+    height: 100%;
   }
   
   *,
@@ -36,8 +37,12 @@ img {
 .app {
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    min-height: 100vh;
 }
+.app.no-menu .sidebar {
+  margin-left: -20rem;
+}
+
 i {
     margin: 0 1rem;
     font-size: 1.2rem;
@@ -112,12 +117,14 @@ i {
 }
 .main-content {
     display: flex;    
+    flex: 1;
 }
 .sidebar {
-    flex: 0 0 20rem;
-    background-color: #373737;
-    color: #fff;
-    padding: 1rem 2rem 0 2rem;
+  transition: margin-left .3s ease;
+  flex: 0 0 20rem;
+  background-color: #373737;
+  color: #fff;
+  padding: 1rem 2rem 0 2rem;
 }
 .user {
     display: flex;
@@ -170,7 +177,7 @@ i {
 .menu-admin .menu > li ul li {
     margin-bottom: 1rem;
 }
-.menu-admin .menu > li:last-of-type {
+.menu-admin .menu > li ul li:last-of-type {
     margin-bottom: 0;
 }
 .menu-admin .menu > li:hover ul {
@@ -183,8 +190,95 @@ i {
     padding: .5rem;
 }
 .menu-admin .menu > li a:hover {
+  background-color: ;
+}
+.menu-admin .menu > li a:hover {
     background-color: #005b9f;
+    padding-left: 2rem;
+    transition: all .2s ease;
 }
-.menu-admin .menu ul {
-    
+
+.content {
+  flex: 1;
+  padding: 1rem;
+  background-color: #eeeeee;
 }
+.content h2 {
+  text-align: center;
+}
+.new-client {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.new-client .field {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;    
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: .5rem;
+}
+@media (min-width: 768px){
+  .new-client .field {
+    flex: 0 0 50%;
+  }
+}
+.new-client .field label {
+  flex: 0 0 120px;
+  padding-left: 1rem;  
+  font-weight: bold;
+}
+.new-client .field input[type="text"],
+.new-client .field textarea {
+  flex: 1;
+  border: none;
+  padding: .5rem 1rem;
+}
+.new-client .field textarea {
+  height: 10rem;
+}
+.new-client .field.expand {
+  flex: 0 0 100%;
+}
+.new-client .field.expand .options {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: space-between;
+}
+@media (min-width: 768px) {
+  .new-client .field.expand .options {
+    flex: 0 0 40%;
+    justify-content: flex-start;
+  }
+}
+.new-client .field.expand .options label {
+  flex: 1;
+  padding-left: .5rem;
+}
+.new-client .field.expand.submit {
+  display: flex;
+  justify-content: flex-end;
+}
+.new-client .field.expand.submit .button {
+  background-color: #005b9f;
+  padding: 1rem;
+  display: block;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color .3s ease;
+}
+.new-client .field.expand.submit .button:hover {
+  cursor: pointer;
+}
+
+/* 
+ To show/hide side menu: 
+ * listen for a click on the arrow icons
+ * the class 'no-menu' is what controls everything, add and remove it from the .app element
+
+
+*/
